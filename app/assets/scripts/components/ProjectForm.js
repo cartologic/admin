@@ -278,14 +278,6 @@ export const schema = {
             type: 'object',
             properties: {en: {type: 'string'}, ar: {type: 'string'}}
           },
-          description: {
-            type: 'string',
-            title: 'Implementation Description'
-          },
-          description_ar: {
-            type: 'string',
-            title: 'وصف عملية التنفيذ'
-          },
           baseline: {
             type: 'string',
             title: 'Baseline - تقييم خط الأساس'
@@ -549,18 +541,10 @@ class ProjectForm extends React.Component {
           status: {
             'ui:field': 'select-kmi_status'
           },
-          description: {
-            'ui:field': 'textarea',
-            classNames: 'with-ar'
-          },
           component: {
             classNames: 'with-ar'
           },
           component_ar: {
-            classNames: 'ar'
-          },
-          description_ar: {
-            'ui:field': 'textarea',
             classNames: 'ar'
           }
         }
