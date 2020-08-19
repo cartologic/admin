@@ -23,14 +23,6 @@ class LocationFieldItem extends React.Component {
 
       if (name === 'governorate' || name === 'district') {
         newState['district'][name] = value;
-      } else if (name === 'lat' || name === 'lon') {
-        value = parseFloat(value);
-
-        if (isNaN(value)) {
-          value = undefined;
-        }
-
-        newState['marker'][name] = value;
       } else if (name === 'village') {
         newState['marker'][name] = value;
       }
@@ -40,7 +32,7 @@ class LocationFieldItem extends React.Component {
   }
 
   render () {
-    const {lat, lon, village} = this.state.marker;
+    const {village} = this.state.marker;
     const {district, governorate} = this.state.district;
     const chosenGovernorate = reverseGovernorateMap[governorate] || '';
 
@@ -75,16 +67,6 @@ class LocationFieldItem extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-sm-6">
-            <label>Latitude - خط العرض</label>
-            <input className="form-control" type="number" value={lat} step="0.00001"
-              onChange={this.onChange('lat')} />
-          </div>
-          <div className="col-sm-6">
-            <label>Longitude - خط الطول</label>
-            <input className="form-control" type="number" value={lon} step="0.00001"
-              onChange={this.onChange('lon')} />
-          </div>
           <div className="col-sm-6">
             <label>Village</label>
             <input className="form-control" type="text" value={village}

@@ -161,14 +161,7 @@ export const schema = {
             title: 'Location Marker',
             type: 'object',
             properties: {
-              lon: {
-                title: 'Longitude',
-                type: 'number'
-              },
-              lat: {
-                title: 'Latitude',
-                type: 'number'
-              },
+
               village: {
                 title: 'Village',
                 type: 'string'
