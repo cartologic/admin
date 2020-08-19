@@ -71,52 +71,51 @@ class Project extends React.Component {
         return 0;
       }).filter(key => {
         return key !== 'name';
-      }).map(function (key) {
-        if (!keys[key]) { return <div></div>; }
+      }).map(function (key, i) {
+        if (!keys[key]) { return <div key={i}></div>; }
         if (keys[key].type === 'object' && 'ar' in keys[key].properties) {
-          return <li key={key}><label>{keys[key].title}</label>{ String(project[key].en) + '-' + String(project[key].ar) }</li>;
+          return <li key={i}><label>{keys[key].title}</label>{ String(project[key].en) + '-' + String(project[key].ar) }</li>;
         }
         if (keys[key].type === 'string') {
-          return <li key={key}><label>{keys[key].title}</label>{ String(project[key]) }</li>;
+          return <li key={i}><label>{keys[key].title}</label>{ String(project[key]) }</li>;
         } else if (key === 'published') {
-          return <li key={key}><label>{keys[key].title}</label>{ project[key] ? 'Published' : 'Draft' }</li>;
+          return <li key={i}><label>{keys[key].title}</label>{ project[key] ? 'Published' : 'Draft' }</li>;
         } else if (key === 'number_served') {
-          return <li key={key}><label>{keys[key].title}</label>{ project[key].number_served + ' ' + project[key].number_served_unit}</li>;
+          return <li key={i}><label>{keys[key].title}</label>{ project[key].number_served + ' ' + project[key].number_served_unit}</li>;
         } else if (key === 'components') {
-          const items = project[key].map((item) => <li className="preview-item">{item.component + ' - ' + item.component_ar}</li>);
-          return <li key={key}><label>{keys[key].title}</label>{ items}</li>;
+          const items = project[key].map((item, i) => <li key={i} className="preview-item">{item.component + ' - ' + item.component_ar}</li>);
+          return <li key={i}><label>{keys[key].title}</label><ul>{ items}</ul></li>;
         } else if (key === 'location') {
-          const locations = project[key].map((location) => {
+          const locations = project[key].map((location, i) => {
             let districtObj = location.district;
             let governorateName = null;
             if (districtObj.governorate) {
               governorateName = reverseGovernorateMap[districtObj.governorate];
               if (districtObj.district) {
                 let districtName = districtLookup(districtObj.governorate, districtObj.district);
-                return <li className="preview-item">{districtName + ', ' + governorateName}</li>;
+                return <li key={i} className="preview-item">{districtName + ', ' + governorateName}</li>;
               } else {
-                return <li className="preview-item">{governorateName}</li>;
+                return <li key={i} className="preview-item">{governorateName}</li>;
               }
             }
 
-            return <li></li>;
+            return <li key={i}></li>;
           });
-          return <li key={key}><label>{keys[key].title}</label><ul>{locations}</ul></li>;
+          return <li key={i}><label>{keys[key].title}</label><ul>{locations}</ul></li>;
         } else if (key === 'sds_indicator' || key === 'sdg_indicator' || key === 'category') {
-          const indicators = project[key].map((item) => <li className="preview-item">{item.en} - {item.ar}</li>);
-          return <li key={key}><label>{keys[key].title}</label><ul>{indicators}</ul></li>;
+          const indicators = project[key].map((item, i) => <li key={i} className="preview-item">{item.en} - {item.ar}</li>);
+          return <li key={i}><label>{keys[key].title}</label><ul>{indicators}</ul></li>;
         } else if (key === 'budget' && project[key].length > 0) {
-          const funds = project[key].map((fund) => <li className="preview-item">{fund.donor_name + ': ' + ' $' + fund.fund.amount}</li>);
-          return <li key={key}><label>{keys[key].title}</label><ul>{funds}</ul></li>;
+          const funds = project[key].map((fund, i) => <li key={i} className="preview-item">{fund.donor_name + ': ' + ' $' + fund.fund.amount}</li>);
+          return <li key={i}><label>{keys[key].title}</label><ul>{funds}</ul></li>;
         } else if (key === 'disbursed' && project[key].length > 0) {
-          const disbursed = project[key].map((fund) => <li className="preview-item">{fund.donor_name + ': ' + fund.type.en + ' $' + fund.fund.amount + ' ' + fund.date}</li>);
-          return <li key={key}><label>{keys[key].title}</label><ul>{disbursed}</ul></li>;
+          const disbursed = project[key].map((fund, i) => <li key={i} className="preview-item">{fund.donor_name + ': ' + fund.type.en + ' $' + fund.fund.amount + ' ' + fund.date}</li>);
+          return <li key={i}><label>{keys[key].title}</label><ul>{disbursed}</ul></li>;
         } else if (key === 'kmi' && project[key].length > 0) {
-          const kmis = project[key].map((kmi) => <li className='preview-item'>{kmi.activity}<p>{kmi.description}</p><p>{kmi.kpi}</p><p>{kmi.date}</p><p>{kmi.status.en}</p></li>);
-          return <li key={key}><label>{keys[key].title}</label><ul>{kmis}</ul></li>;
+          const kmis = project[key].map((kmi, i) => <li key={i} className='preview-item'>{kmi.activity}<p>{kmi.description}</p><p>{kmi.kpi}</p><p>{kmi.date}</p><p>{kmi.status.en}</p></li>);
+          return <li key={i}><label>{keys[key].title}</label><ul>{kmis}</ul></li>;
         }
       });
-
       return (
         <div className="project-display wrapper-content width-medium">
           <h1 className="header-page-main">{project.name}</h1>

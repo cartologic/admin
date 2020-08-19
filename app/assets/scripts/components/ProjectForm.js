@@ -314,11 +314,45 @@ export const schema = {
     recommendations_ar: {type: 'string', title: 'توصيات بناء على خبرة المشروع'}
   }
 };
-
+const InternationalSubSectors = {
+  'en_sub_sector': [
+    'Agriculture Extension & Research',
+    'Agro-industry, Marketing & Trade',
+    'Crops',
+    'Fishing, Aquaculture & Forestry',
+    'Livestock',
+    'Rural Infrastructure & Irrigation'
+  ],
+  'ar_sub_sector': [
+    'الارشاد الزراعي والبحث',
+    'الصناعات الزراعية والتسويق والتجارة',
+    'المحاصيل',
+    'صيد الأسماك و الزراعة المائية وعلم التحريج',
+    'الثروة الحيوانية',
+    'البنية التحتية بالمناطق الريفية والري'
+  ]
+};
+const DomesticSubSectors = {
+  'en_sub_sector': [
+    'Agriculture Extension & Research',
+    'Agro-industry, Marketing & Trade',
+    'Crops',
+    'Fishing, Aquaculture & Forestry',
+    'Livestock',
+    'Rural Infrastructure & Irrigation'
+  ],
+  'ar_sub_sector': [
+    'الارشاد الزراعي والبحث',
+    'الصناعات الزراعية والتسويق والتجارة',
+    'المحاصيل',
+    'صيد الأسماك و الزراعة المائية وعلم التحريج',
+    'الثروة الحيوانية',
+    'البنية التحتية بالمناطق الريفية والري'
+  ]
+};
 class ProjectForm extends React.Component {
   constructor (props) {
     super(props);
-
     this.state = {};
     this.state.schema = schema;
     this.state.formData = this.props.formData;
@@ -327,6 +361,10 @@ class ProjectForm extends React.Component {
     } else {
       this.state.isDraft = true;
     }
+    // get sub_sectors according to project type
+    this.state.subSectors = props.projectType === 'international' ? InternationalSubSectors['en_sub_sector'] : DomesticSubSectors['en_sub_sector'];
+    this.state.arabicsubSectors = props.projectType === 'international' ? InternationalSubSectors['ar_sub_sector'] : DomesticSubSectors['ar_sub_sector'];
+
     this.state.uiSchema = {
       components: {
         classNames: 'multiform-group form-block',
@@ -582,8 +620,7 @@ class ProjectForm extends React.Component {
   }
 
   render () {
-    const {schema, formData, isDraft} = this.state;
-
+    const {schema, formData, isDraft, subSectors, arabicsubSectors} = this.state;
     return <Form schema={schema}
       onSubmit={this.onSubmit.bind(this)}
       formData={formData}
@@ -649,22 +686,8 @@ class ProjectForm extends React.Component {
         'select-category': Dropdown(
           'Sub-sector - القطاع الفرعي',
           'Select a sub-sector - يُرحى اختيار قطاع فرعي',
-          [
-            'Agriculture Extension & Research',
-            'Agro-industry, Marketing & Trade',
-            'Crops',
-            'Fishing, Aquaculture & Forestry',
-            'Livestock',
-            'Rural Infrastructure & Irrigation'
-          ],
-          [
-            'الارشاد الزراعي والبحث',
-            'الصناعات الزراعية والتسويق والتجارة',
-            'المحاصيل',
-            'صيد الأسماك و الزراعة المائية وعلم التحريج',
-            'الثروة الحيوانية',
-            'البنية التحتية بالمناطق الريفية والري'
-          ],
+          subSectors,
+          arabicsubSectors,
           true
         ),
         'select-disbursed-type': Dropdown(
