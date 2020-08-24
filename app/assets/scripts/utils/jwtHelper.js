@@ -28,6 +28,15 @@ export function isEditor (token) {
   return decoded.roles && decoded.roles.indexOf('edit') > -1;
 }
 
+export function isInternationalEditor (token) {
+  const decoded = decode(token);
+  return decoded.roles && decoded.roles.indexOf('international editor') > -1;
+}
+export function isDomesticEditor (token) {
+  const decoded = decode(token);
+  return decoded.roles && decoded.roles.indexOf('domestic editor') > -1;
+}
+
 export function isAdmin (token) {
   const decoded = decode(token);
   return decoded.roles && decoded.roles.indexOf('admin') > -1;

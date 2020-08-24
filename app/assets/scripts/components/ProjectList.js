@@ -23,6 +23,14 @@ class ProjectList extends React.Component {
           list = list.filter((project) => {
             return project.owner === sub;
           });
+        } if (!component.props.auth.isDomesticEditor()) {
+          list = list.filter((project) => {
+            return project.owner === sub;
+          });
+        } if (!component.props.auth.isInternationalEditor()) {
+          list = list.filter((project) => {
+            return project.owner === sub;
+          });
         }
 
         component.setState({
@@ -80,7 +88,9 @@ class ProjectList extends React.Component {
       <div className="section">
         <div className="wrapper-content">
           <h2 className="header-page-main">{ component.props.limit ? 'Recently Added ' : ''}{component.props.type} Projects</h2>
+          {component.props.type === 'international' ? (component.props.auth.isInternationalEditor() || component.props.auth.isAdmin()) && <Link to={`projects/${component.props.type}/new`} className="btn button--primary button-section-header button--small">Add a {component.props.type} Project</Link> : (component.props.auth.isDomesticEditor() || component.props.auth.isAdmin()) &&
           <Link to={`projects/${component.props.type}/new`} className="btn button--primary button-section-header button--small">Add a {component.props.type} Project</Link>
+          }
           <table className="table">
             <thead>
               <tr>
@@ -96,9 +106,9 @@ class ProjectList extends React.Component {
               {listItems}
             </tbody>
           </table>
-          { component.props.limit // only show view all button if we have a limit
-            ? <Link to='projects' className="link--primary">View All</Link>
-            : ''
+          { (component.props.limit && list.length > 0) && // only show view all button if we have a limit
+           <Link to='projects' className="link--primary">View All</Link>
+
           }
         </div>
       </div>

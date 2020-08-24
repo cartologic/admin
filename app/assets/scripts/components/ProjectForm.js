@@ -346,6 +346,7 @@ class ProjectForm extends React.Component {
     } else {
       this.state.isDraft = true;
     }
+    this.state.Admin = props.auth.isAdmin();
     // get sub_sectors according to project type
     this.state.subSectors = props.projectType === 'international' ? InternationalSubSectors['en_sub_sector'] : DomesticSubSectors['en_sub_sector'];
     this.state.arabicsubSectors = props.projectType === 'international' ? InternationalSubSectors['ar_sub_sector'] : DomesticSubSectors['ar_sub_sector'];
