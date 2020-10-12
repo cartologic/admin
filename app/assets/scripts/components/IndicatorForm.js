@@ -62,7 +62,7 @@ export const schema = {
     data_geography: {
       title: 'Data Geography',
       type: 'boolean',
-      enumNames: ['Governorate - a3 - محافظة', 'District - a3 - مركز']
+      enumNames: ['Governorate - a2 - محافظة', 'District - a3 - مركز']
     },
     data: {
       type: 'string',
