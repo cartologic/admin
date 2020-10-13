@@ -49,11 +49,11 @@ export const schema = {
       items: {
         type: 'object',
         properties: {
-          source: {
+          en: {
             title: 'Source',
             type: 'string'
           },
-          source_ar: {
+          ar: {
             title: 'المصدر',
             type: 'string'
           }
@@ -113,10 +113,10 @@ class IndicatorForm extends React.Component {
         classNames: 'multiform-group form-block',
         items: {
           classNames: 'multiform-group_item',
-          source: {
+          en: {
             classNames: 'with-ar'
           },
-          source_ar: {
+          ar: {
             classNames: 'ar'
           }
         }
