@@ -76,10 +76,10 @@ class Indicator extends React.Component {
             'sdg': 'SDG Goal - هدف التنمية المستدامة',
             'other': 'Other Development Indicator - مؤشرات اجتماعية و اقتصادية اخرى'
           };
-          const indicators = indicator[key].map((item) => <li>{typeDisplayMap[item.type]} - {item.en} - {item.ar}</li>);
+          const indicators = indicator[key].map((item,i) => <li key={i}>{typeDisplayMap[item.type]} - {item.en} - {item.ar}</li>);
           return <li key={key}><label>{keys[key].title}</label><ul>{indicators}</ul></li>;
         } else if (key === 'sources') {
-          const sources = indicator[key].map((item) => <li className="preview-item">{item}</li>);
+        const sources = indicator[key].map((item,i) => <li key={i} className="preview-item">{item.source} - {item.source_ar}</li>);
           return <li key={key}><label>{keys[key].title}</label><ul>{sources}</ul></li>;
         }
       });
