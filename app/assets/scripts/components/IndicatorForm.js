@@ -47,8 +47,17 @@ export const schema = {
       type: 'array',
       title: 'Sources - المصادر',
       items: {
-        title: 'Source',
-        type: 'string'
+        type: 'object',
+        properties: {
+          source: {
+            title: 'Source',
+            type: 'string'
+          },
+          source_ar: {
+            title: 'المصدر',
+            type: 'string'
+          }
+        }
       }
     },
     units: {
@@ -101,7 +110,16 @@ class IndicatorForm extends React.Component {
         'ui:widget': 'textarea'
       },
       sources: {
-        classNames: 'multiform-group form-block'
+        classNames: 'multiform-group form-block',
+        items: {
+          classNames: 'multiform-group_item',
+          source: {
+            classNames: 'with-ar'
+          },
+          source_ar: {
+            classNames: 'ar'
+          }
+        }
       },
       description_ar: {
         classNames: 'ar',
