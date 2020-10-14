@@ -100,6 +100,7 @@ export const schema = {
     implementing_partners: {type: 'string', title: 'Implementing Partners'},
     implementing_partners_ar: {type: 'string', title: 'الشركاء المنفذين'},
     project_link: {title: 'Project Link - الرابط الالكتروني للمشروع', type: 'string', format: 'uri'},
+    project_file: {title: 'Project File -  ملف المشروع', type: 'string', format: 'uri'},
     number_served: {
       title: 'Number of Beneficiaries - عدد المستفيدين/ المستفيدات ',
       type: 'array',
@@ -311,6 +312,11 @@ export const schema = {
       title: 'Monitoring report link - الرابط الالكتروني لتقرير الرصد',
       format: 'uri'
     },
+    reportFile: {
+      type: 'string',
+      title: 'Monitoring report file -   ملف تقرير الرصد',
+      format: 'uri'
+    },
     recommendations: {type: 'string', title: 'Project achievements and Recommendations based on project experience'},
     recommendations_ar: {type: 'string', title: ' إنجازات المشروع و توصيات بناء على خبرة المشروع'}
   }
@@ -361,6 +367,10 @@ class ProjectForm extends React.Component {
     super(props);
 
     this.state = {};
+    if (props.projectType === 'national') {
+      schema.properties.reportFile.format = 'data-url';
+      schema.properties.project_file.format = 'data-url';
+    }
   
     this.state.schema = schema;
     this.state.formData = this.props.formData;
@@ -504,6 +514,11 @@ class ProjectForm extends React.Component {
       project_link: {
         'ui:placeholder': 'http://'
       },
+      project_file: {
+         'ui:placeholder': 'http://',
+         'ui:widget':  this.props.projectType === 'international' ?  'hidden' : 'file',
+      
+        },
       location: {
         classNames: 'form-block multiform-group',
         'ui:field': 'location'
@@ -565,6 +580,11 @@ class ProjectForm extends React.Component {
       reportLink: {
         title: 'Report link',
         'ui:placeholder': 'http://',
+      },
+      reportFile: {
+        title: 'Report file',
+        'ui:placeholder': 'http://',
+        'ui:widget':  this.props.projectType === 'international' ?  'hidden' : 'file' 
       },
       recommendations: {
         classNames: 'with-ar',

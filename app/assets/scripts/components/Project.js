@@ -27,6 +27,7 @@ const ordering = [
   'implementing_partners',
   'implementing_partners_ar',
   'local_manager',
+  'project_file',
   'project_link',
   'percent_complete',
   'sds_indicator',
@@ -77,6 +78,11 @@ class Project extends React.Component {
           return <li key={key}><label>{keys[key].title}</label>{ String(project[key].en) + '-' + String(project[key].ar) }</li>;
         }
         if (keys[key].type === 'string') {
+          if(project.type === 'national') {
+            if (key === 'project_file' || key === 'reportFile') {
+              return <li key={key}><label>{keys[key].title}</label><a href={`${apiRoot}/uploaded/${String(project[key])}`} target='_blank'>{String(project[key])}</a></li>;
+            }
+          }
           return <li key={key}><label>{keys[key].title}</label>{ String(project[key]) }</li>;
         } else if (key === 'published') {
           return <li key={key}><label>{keys[key].title}</label>{ project[key] ? 'Published' : 'Draft' }</li>;

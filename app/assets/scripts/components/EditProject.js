@@ -32,8 +32,6 @@ class EditProject extends React.Component {
     });
   }
 
-
-
   componentWillMount () {
     const component = this;
     const id = component.props.location.pathname
@@ -41,9 +39,37 @@ class EditProject extends React.Component {
       .replace('/edit', '');
     component.props.auth.request(`${apiRoot}/projects/${id}`, 'get')
         .then(function (resp) {
-        
+          if(resp.data.reportFile) {
+            fetch(`${apiRoot}/uploaded/${resp.data.reportFile}`).then(r => r.blob()).then(blob => {
+              component.fileBase64(blob, resp.data.reportFile).then(base64 =>{
+                resp.data.reportFile = base64;
+                if(resp.data.project_file){
+                  fetch(`${apiRoot}/uploaded/${resp.data.project_file}`).then(r => r.blob()).then(blob => {
+                    component.fileBase64(blob, resp.data.project_file).then(base64 =>{
+                      resp.data.project_file = base64;
+                      component.setState({project: resp, id: id });
+                    });
+
+                  });
+
+                }else{
+                  component.setState({project: resp, id: id });
+                }
+              });
+            });
+          }else if(resp.data.project_file){
+                  fetch(`${apiRoot}/uploaded/${resp.data.project_file}`).then(r => r.blob()).then(blob => {
+                    component.fileBase64(blob, resp.data.project_file).then(base64 =>{
+                      resp.data.project_file = base64;
+                      component.setState({project: resp, id: id });
+                    });
+
+                  });
+
+                }
+          else{
               component.setState({project: resp, id: id });
-          
+          }
         }).fail(function (err, msg) {
           console.error('error', err, msg);
         });
