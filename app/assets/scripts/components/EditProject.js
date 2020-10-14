@@ -41,37 +41,9 @@ class EditProject extends React.Component {
       .replace('/edit', '');
     component.props.auth.request(`${apiRoot}/projects/${id}`, 'get')
         .then(function (resp) {
-          if(resp.data.reportLink) {
-            fetch(`${apiRoot}/uploaded/${resp.data.reportLink}`).then(r => r.blob()).then(blob => {
-              component.fileBase64(blob, resp.data.reportLink).then(base64 =>{
-                resp.data.reportLink = base64;
-                if(resp.data.project_link){
-                  fetch(`${apiRoot}/uploaded/${resp.data.project_link}`).then(r => r.blob()).then(blob => {
-                    component.fileBase64(blob, resp.data.project_link).then(base64 =>{
-                      resp.data.project_link = base64;
-                      component.setState({project: resp, id: id });
-                    });
-
-                  });
-
-                }else{
-                  component.setState({project: resp, id: id });
-                }
-              });
-            });
-          }else if(resp.data.project_link){
-                  fetch(`${apiRoot}/uploaded/${resp.data.project_link}`).then(r => r.blob()).then(blob => {
-                    component.fileBase64(blob, resp.data.project_link).then(base64 =>{
-                      resp.data.project_link = base64;
-                      component.setState({project: resp, id: id });
-                    });
-
-                  });
-
-                }
-          else{
+        
               component.setState({project: resp, id: id });
-          }
+          
         }).fail(function (err, msg) {
           console.error('error', err, msg);
         });
