@@ -41,7 +41,7 @@ export const schema = {
       title: 'Visibility - الرؤية', 'description': 'Draft information will be saved but not published on the website - سيتم حفظ معلومات المسودة ولكن لن يتم نشرها على الموقع',
       type: 'boolean',
       default: false,
-      enumNames: ['publish - نشر', 'Draft - مسودة']
+      enumNames: ['Publish - نشر', 'Draft - مسودة']
     },
     components: {
       title: 'Project Components - (مكونات المشروع (الأهداف المحددة وأنشطة المشروع',
