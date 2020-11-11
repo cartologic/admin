@@ -61,7 +61,7 @@ class IndicatorList extends React.Component {
       <div className="section">
         <div className="wrapper-content">
           <h2 className="header-page-main">{ component.props.limit ? 'Recently Added ' : ''}Indicators</h2>
-          {(auth.isIndicatorEditor() || auth.isAdmin()) && <Link to='indicators/new' className="btn button--primary button-section-header button--small">Add an Indicator</Link>}
+          {(auth.isIndicatorEditor() || auth.isAdmin()) && <Link to='indicators/new' className="btn button--primary button-section-header button--small text-capitalize">Add an Indicator</Link>}
           <table className="table">
             <thead>
               <tr>
