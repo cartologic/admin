@@ -281,7 +281,7 @@ export const schema = {
           },
           kpi_ar: {
             type: 'string',
-            title: 'مؤشرات الأداء الرئيسية'
+            title: 'مؤشر الأداء الرئيسى'
           },
           status: {
             title: 'Status',
