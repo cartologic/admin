@@ -85,7 +85,7 @@ class EditIndicator extends React.Component {
         <h1>Edit Indicator</h1>
         <IndicatorForm onSubmit={component.handleSubmit} auth={component.props.auth} formData={component.state.indicator.data} onChange={component.handleChange}>
           <button className="btn button--base button-group" onClick={component.handleDelete}>Delete</button>
-          <Link className="btn button--base-bounded button-group" to={`/projects/${component.state.id}`}>Cancel</Link>
+          <Link className="btn button--base-bounded button-group" to={`/indicators/${component.state.id}`}>Cancel</Link>
         </IndicatorForm>
       </div>;
     }
