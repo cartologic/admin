@@ -48,6 +48,7 @@ export const schema = {
       type: 'array',
       items: {
         type: 'object',
+        required:['component'],
         properties: {
           component: {
             title: 'Component',
