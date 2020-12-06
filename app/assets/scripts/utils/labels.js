@@ -168,6 +168,13 @@ module.exports = {
       'World Bank',
       'World Food Program',
       'WorldFish',
+      'Adaptation Fund',
+      'Global Environment Facility (GEF)',
+      'Green Climate Fund',
+      'OPEC Fund for International Development',
+      'Private Sector',
+      'United Nations Development Fund for Women',
+      'United Nations Trust Fund for Human Security'
 
     ],
     'ar': [
@@ -217,7 +224,14 @@ module.exports = {
       'فودافون',
       'البنك الدولي',
       'برنامج الأغذية العالمي',
-      'المركز الدولي للأسماك'
+      'المركز الدولي للأسماك',
+      'صندوق التكيف',
+      'صندوق البيئة العالمي',
+      'صندوق المناخ الأخضر',
+      'صندوق الأوبك للتنمية الدولية',
+      'قطاع خاص',
+      'صندوق الأمم المتحدة الإنمائي للمرأة',
+      'صندوق الأمم المتحدة الاستئماني للأمن البشري'
     ]
   },
   beneficiaryTypes: {
