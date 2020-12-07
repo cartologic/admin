@@ -160,7 +160,7 @@ module.exports = {
       'The Agricultural Development Program',
       'The Drosos Foundation',
       'The Egyptian Agricultural Bank',
-      'United Nations Development Funds for Women',
+      'United Nations Development Fund for Women',
       'United Nations Development Programme',
       'United Nations Industrial Development Organization',
       'United States Agency for International Development',
@@ -174,7 +174,11 @@ module.exports = {
       'OPEC Fund for International Development',
       'Private Sector',
       'United Nations Development Fund for Women',
-      'United Nations Trust Fund for Human Security'
+      'United Nations Trust Fund for Human Security',
+      'United Nations Human Settlements Programme (UN-Habitat)',
+      'International Organization for Migration',
+      'Adaptation for Smallholder Agriculture Programme (ASAP)',
+      'Bank of Alexandria (ALEXBANK)'
 
     ],
     'ar': [
@@ -231,7 +235,11 @@ module.exports = {
       'صندوق الأوبك للتنمية الدولية',
       'قطاع خاص',
       'صندوق الأمم المتحدة الإنمائي للمرأة',
-      'صندوق الأمم المتحدة الاستئماني للأمن البشري'
+      'صندوق الأمم المتحدة الاستئماني للأمن البشري',
+      'برنامج الامم المتحدة للمستوطنات البشرية',
+      'المنظمة الدولية للهجرة',
+      'برنامج التكيف لصالح زراعة أصحاب الحيازات الصغيرة',
+      'بنك الإسكندرية'
     ]
   },
   beneficiaryTypes: {
