@@ -15,9 +15,11 @@ export const schema = {
   required: [
     'budget',
     'description',
+    'description_ar',
     'category',
     'location',
     'name',
+    'name_ar',
     'number_served',
     'planned_end_date',
     'planned_start_date',
@@ -48,7 +50,7 @@ export const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required:['component'],
+        required:['component','component_ar'],
         properties: {
           component: {
             title: 'Component',
