@@ -21,6 +21,7 @@ export const schema = {
     'name',
     'name_ar',
     'number_served',
+    'contract_date',
     'planned_end_date',
     'planned_start_date',
     'published',
