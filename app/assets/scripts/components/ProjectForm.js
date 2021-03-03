@@ -718,7 +718,7 @@ class ProjectForm extends React.Component {
         ),
         'select-kmi_status': Dropdown('Status', 'Select a status - يُرجى اختيار الوضع/ الحالة',
           ['Not Implemented', 'Partially Implemented', 'Implemented', 'N/A'],
-          ['لم يتحقق', ' تحقق جزئياً', ' تحقق بالكامل', 'N/A']
+          ['لم تنفذ', ' نفذت جزئياً', 'نفذت كليا', 'N/A']
         ),
         'select-donor': Dropdown(
           'Donor - الجهة المانحة',
