@@ -27,7 +27,8 @@ export const schema = {
     'published',
     'sdg_indicator',
     'sds_indicator',
-    'status'
+    'status',
+    'components'
   ],
   properties: {
     name: {type: 'string', title: 'Project Name', 'description': 'Please make sure this is a unique name'},
