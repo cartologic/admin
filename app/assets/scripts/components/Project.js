@@ -78,7 +78,7 @@ class Project extends React.Component {
           return <li key={key}><label>{keys[key].title}</label>{ String(project[key].en) + '-' + String(project[key].ar) }</li>;
         }
         if (keys[key].type === 'string') {
-          if(project.type === 'national') {
+          if (project.type === 'national') {
             if (key === 'project_file' || key === 'reportFile') {
               return <li key={key}><label>{keys[key].title}</label><a href={`${apiRoot}/uploaded/${String(project[key])}`} target='_blank'>{String(project[key])}</a></li>;
             }
