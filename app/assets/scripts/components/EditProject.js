@@ -21,12 +21,12 @@ class EditProject extends React.Component {
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = function() {
+      reader.onload = function () {
         var fileInfo = reader.result.split(',')[0].split(';');
         var header = `${fileInfo[0]};name=${fileName};${fileInfo[1]}`;
         resolve(`${header},${reader.result.split(',')[1]}`);
       };
-      reader.onerror = function(error) {
+      reader.onerror = function (error) {
         reject(error);
       };
     });
@@ -39,36 +39,31 @@ class EditProject extends React.Component {
       .replace('/edit', '');
     component.props.auth.request(`${apiRoot}/projects/${id}`, 'get')
         .then(function (resp) {
-          if(resp.data.reportFile) {
+          if (resp.data.reportFile) {
             fetch(`${apiRoot}/uploaded/${resp.data.reportFile}`).then(r => r.blob()).then(blob => {
-              component.fileBase64(blob, resp.data.reportFile).then(base64 =>{
+              component.fileBase64(blob, resp.data.reportFile).then(base64 => {
                 resp.data.reportFile = base64;
-                if(resp.data.project_file){
+                if (resp.data.project_file) {
                   fetch(`${apiRoot}/uploaded/${resp.data.project_file}`).then(r => r.blob()).then(blob => {
-                    component.fileBase64(blob, resp.data.project_file).then(base64 =>{
+                    component.fileBase64(blob, resp.data.project_file).then(base64 => {
                       resp.data.project_file = base64;
-                      component.setState({project: resp, id: id });
+                      component.setState({ project: resp, id: id });
                     });
-
                   });
-
-                }else{
-                  component.setState({project: resp, id: id });
+                } else {
+                  component.setState({ project: resp, id: id });
                 }
               });
             });
-          }else if(resp.data.project_file){
-                  fetch(`${apiRoot}/uploaded/${resp.data.project_file}`).then(r => r.blob()).then(blob => {
-                    component.fileBase64(blob, resp.data.project_file).then(base64 =>{
-                      resp.data.project_file = base64;
-                      component.setState({project: resp, id: id });
-                    });
-
-                  });
-
-                }
-          else{
-              component.setState({project: resp, id: id });
+          } else if (resp.data.project_file) {
+            fetch(`${apiRoot}/uploaded/${resp.data.project_file}`).then(r => r.blob()).then(blob => {
+              component.fileBase64(blob, resp.data.project_file).then(base64 => {
+                resp.data.project_file = base64;
+                component.setState({ project: resp, id: id });
+              });
+            });
+          } else {
+            component.setState({ project: resp, id: id });
           }
         }).fail(function (err, msg) {
           console.error('error', err, msg);

@@ -27,7 +27,8 @@ export const schema = {
     'published',
     'sdg_indicator',
     'sds_indicator',
-    'status'
+    'status',
+    'components'
   ],
   properties: {
     name: {type: 'string', title: 'Project Name', 'description': 'Please make sure this is a unique name'},
@@ -51,7 +52,7 @@ export const schema = {
       type: 'array',
       items: {
         type: 'object',
-        required:['component','component_ar'],
+        required: ['component', 'component_ar'],
         properties: {
           component: {
             title: 'Component',
@@ -64,7 +65,7 @@ export const schema = {
         }
       }
     },
-  
+
     project_delays: {
       title: 'Project Delays',
       description: 'Please indicate any major delays in the project implementation, including the  cause of the delay',
@@ -224,7 +225,7 @@ export const schema = {
               duration_of_repayment_en: {type: 'string', title: 'Duration of Repayment'},
               duration_of_repayment_ar: {type: 'string', title: 'مدة السداد'}
             }
-          },
+          }
         }
       }
     },
@@ -375,7 +376,7 @@ class ProjectForm extends React.Component {
       schema.properties.reportFile.format = 'data-url';
       schema.properties.project_file.format = 'data-url';
     }
-  
+
     this.state.schema = schema;
     this.state.formData = this.props.formData;
     if (this.state.formData && 'published' in this.state.formData) {
@@ -519,10 +520,9 @@ class ProjectForm extends React.Component {
         'ui:placeholder': 'http://'
       },
       project_file: {
-         'ui:placeholder': 'http://',
-         'ui:widget':  this.props.projectType === 'international' ?  'hidden' : 'file',
-      
-        },
+        'ui:placeholder': 'http://',
+        'ui:widget': this.props.projectType === 'international' ? 'hidden' : 'file'
+      },
       location: {
         classNames: 'form-block multiform-group',
         'ui:field': 'location'
@@ -583,12 +583,12 @@ class ProjectForm extends React.Component {
       },
       reportLink: {
         title: 'Report link',
-        'ui:placeholder': 'http://',
+        'ui:placeholder': 'http://'
       },
       reportFile: {
         title: 'Report file',
         'ui:placeholder': 'http://',
-        'ui:widget':  this.props.projectType === 'international' ?  'hidden' : 'file' 
+        'ui:widget': this.props.projectType === 'international' ? 'hidden' : 'file'
       },
       recommendations: {
         classNames: 'with-ar',
