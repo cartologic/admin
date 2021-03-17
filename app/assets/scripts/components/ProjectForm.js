@@ -216,7 +216,7 @@ export const schema = {
             properties: {en: {type: 'string', title: 'Type of Fund'}, ar: {type: 'string'}}
           },
           loan_details: {
-            description: 'Loan Details( FOR LOAN TYPE ONLY) - (تفاصيل القرض (في حالة القروض فقط',
+            description: 'Loan Details (ONLY ADD FOR LOANS) - (تفاصيل القرض (في حالة القروض فقط',
             type: 'object',
             properties: {
               interest_rate: {type: 'number', title: 'Interest Rate - سعر الفائدة'},
